@@ -216,10 +216,10 @@ Create role `catalog`in database:
 - Grant limited powers to the user:
 ```
 GRANT CONNECT ON DATABASE catalog TO catalog;
- GRANT SELECT ON instrument TO catalog;
-`GRANT INSERT ON instrument TO catalog;`
-`GRANT UPDATE ON instrument TO catalog;`
-`GRANT DELETE ON instrument TO catalog;
+GRANT SELECT ON instrument TO catalog;
+GRANT INSERT ON instrument TO catalog;
+GRANT UPDATE ON instrument TO catalog;
+GRANT DELETE ON instrument TO catalog;
 ```
 
 (https://www.postgresql.org/docs/9.1/sql-grant.html)
