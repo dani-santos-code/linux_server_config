@@ -19,11 +19,11 @@ Made the IP static to set up the domain name later ahead.
 Under the Networking panel, added rules to the firewall:
 
 ```
-Application	Protocol	Port range
-SSH	         TCP	      22
-HTTP	        TCP	      80
-Custom	      TCP	      123
-Custom	      TCP	      2200
+Application Protocol Port range
+SSH          TCP      22
+HTTP         TCP      80
+Custom       TCP      123
+Custom       TCP      2200
 ```
 
 ## Ubuntu setup
