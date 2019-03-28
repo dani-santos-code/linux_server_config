@@ -203,7 +203,7 @@ The current default when installing PostgreSQL from the Ubuntu repositories is t
 
 (More on the topics can be found at https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
-# Creating Roles and Granting Permissions on the Database
+## Creating Roles and Granting Permissions on the Database
 
 Create role `catalog`in database:
 
@@ -229,7 +229,7 @@ GRANT DELETE ON instrument TO catalog;
 (https://www.postgresql.org/docs/9.1/sql-grant.html)
 (https://tableplus.io/blog/2018/04/postgresql-how-to-create-read-only-user.html)
 
-# Setting up the schema
+## Setting up the schema
 
 Finally, to set up the schema and prepopulate the database, run the following:
 
@@ -238,13 +238,13 @@ Finally, to set up the schema and prepopulate the database, run the following:
 `python3 /var/www/music_inventory/catalog/loadinstruments.py`
 
 
-# DNS (Google Domains)
+## DNS (Google Domains)
 
 This DNS was created for another purpose, but I'm using it in this project. It's a Google domain.
 
 I added the public IP of this AWS instance to the list of resource records.
 
 
-# OAuth Consent
+## OAuth Consent
 
 I added my domain to the list of  Google's OAuth authorized domains.
