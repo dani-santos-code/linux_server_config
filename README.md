@@ -8,7 +8,7 @@ The app can be found at www.danisantoscode.com
 
 To add instruments to the database, please login to Google.
 
-The steps taken in order to achieve so, were as follows:
+The steps taken in order to achieve so were as follows:
 
 ## AWS Lightsail Instance
 
@@ -18,12 +18,13 @@ Made the IP static to set up the domain name later ahead.
 
 Under the Networking panel, added rules to the firewall:
 
-`Application	Protocol	Port range
+```
+Application	Protocol	Port range
 SSH	          TCP	      22
 HTTP	        TCP	       80
 Custom	      TCP	     123
-Custom	      TCP	     2200`
-
+Custom	      TCP	     2200
+```
 
 ## Ubuntu setup
 
@@ -39,8 +40,10 @@ Run the following, to make sure packages, especially security ones, are updated:
 - `sudo nano /etc/hosts`
 
 Add the following lines to the file:
-`127.0.0.1 localhost
-35.156.207.226 www.danisantoscode.com`
+```
+127.0.0.1 localhost
+35.156.207.226 www.danisantoscode.com
+```
 
 ## Disable ssh with root
 By default, Lighsail won't allow remote access via root
@@ -55,7 +58,7 @@ By default, Lighsail won't allow remote access via root
 ## Generate SSH keys for Grader and add to server
 - This prevents brute force attacks
 
-- Generate ssh-keys for grader, with passphrase of `grader1453`
+- Generate ssh-keys for grader with passphrase
 `ssh-keygen`
 
 - Generated two keys (one public, one private)
@@ -67,9 +70,10 @@ By default, Lighsail won't allow remote access via root
 `sudo nano .ssh/authorized_keys`
 
 - Added public key (`graderAccess.pub`) to authorized keys file on the Server
+
 - You can now log in as `grader` by running:
 ` ssh grader@18.184.67.11 -p 2200 -i ~/.ssh/graderAccess`
-And entering passphrase provided in the Notes: `grader1453`
+(The key and the passphrase are in the provided "Notes to Reviewer")
 
 Notice: - You might have to run `chmod 400 graderAccess` in order to make it secure, since Amazon Lighsail might raise the following error message:  WARNING: UNPROTECTED PRIVATE KEY FILE!
 
@@ -77,20 +81,19 @@ Notice: - You might have to run `chmod 400 graderAccess` in order to make it sec
 
 Change SSHD Config file to disable remote access with root and enable port 2200:
 
+- `sudo nano /etc/ssh/sshd_config`
 - `PermitRootLogin no`
 
 - `PasswordAuthentication no`
 
-- `sudo nano /etc/ssh/sshd_config`
-
 - `#Run SSH on a non standard port
 Port 2200
 `
-- - `sudo service sshd restart`
+-  `sudo service sshd restart`
 
 ## Ubuntu Firewall
 
-- Make sure UFW is installed. (It is by default on Lightsail)
+- Make sure UFW is installed. (It is isntalled by default on Lightsail)
 
 - `sudo ufw reset`
 
@@ -122,20 +125,7 @@ To                         Action      From
 2200/tcp (v6)              ALLOW       Anywhere (v6)
 80/tcp (v6)                ALLOW       Anywhere (v6)
 123/tcp (v6)               ALLOW       Anywhere (v6)
-5000 (v6)                  ALLOW       Anywhere (v6)
 
-
-## Managing the Environment
-1) Install pip:
- `sudo apt-get install python3-pip`
-
-2) `sudo pip3 install virtualenv`
-
-3) Create env `sudo virtualenv flask_env`
-
-4) Activate the env by running sudo `source flask_env/bin/activate`
-
-5) To install dependencies, run `pip3 install -r requirements.txt`
 
 ## WSGI and Apache setup
 
@@ -157,11 +147,27 @@ To                         Action      From
 
 - Make sure the other conf files are disabled by running `sudo a2dissite <NAME>`
 
+- After making those changes, run `sudo service apache2 restart`
+
 ## Cloning the webapp project repo on Git
 
 Install git:
 
 - `sudo apt-get install git`
+
+
+## Managing the Environment
+1) Install pip:
+ `sudo apt-get install python3-pip`
+
+2) `sudo pip3 install virtualenv`
+
+3) Create env `sudo virtualenv venv`
+
+4) Activate the env by running sudo `source venv/bin/activate`
+
+5) To install dependencies, run `pip3 install -r requirements.txt`
+
 
 ## PostgreSQL setup
 
