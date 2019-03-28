@@ -20,10 +20,10 @@ Under the Networking panel, added rules to the firewall:
 
 ```
 Application	Protocol	Port range
-SSH	          TCP	      22
+SSH	         TCP	      22
 HTTP	        TCP	      80
-Custom	      TCP	     123
-Custom	      TCP	     2200
+Custom	      TCP	      123
+Custom	      TCP	      2200
 ```
 
 ## Ubuntu setup
@@ -214,12 +214,13 @@ Create role `catalog`in database:
 - Connect to the catalog database:
 `\c catalog`
 - Grant limited powers to the user:
-`GRANT CONNECT ON DATABASE catalog TO catalog;`
-
-`GRANT SELECT ON instrument TO catalog;`
+```
+GRANT CONNECT ON DATABASE catalog TO catalog;
+ GRANT SELECT ON instrument TO catalog;
 `GRANT INSERT ON instrument TO catalog;`
 `GRANT UPDATE ON instrument TO catalog;`
-`GRANT DELETE ON instrument TO catalog;`
+`GRANT DELETE ON instrument TO catalog;
+```
 
 (https://www.postgresql.org/docs/9.1/sql-grant.html)
 (https://tableplus.io/blog/2018/04/postgresql-how-to-create-read-only-user.html)
