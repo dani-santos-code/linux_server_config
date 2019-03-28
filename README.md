@@ -42,17 +42,17 @@ Add the following lines to the file:
 `127.0.0.1 localhost
 35.156.207.226 www.danisantoscode.com`
 
-# Disable ssh with root
+## Disable ssh with root
 By default, Lighsail won't allow remote access via root
 
-# Create user grader
+## Create user grader
 `sudo adduser grader`
 
-# Add Grader to sudo group
+## Add Grader to sudo group
 
 `sudo adduser grader sudo`
 
-# Generate SSH keys for Grader and add to server
+## Generate SSH keys for Grader and add to server
 - This prevents brute force attacks
 
 - Generate ssh-keys for grader, with passphrase of `grader1453`
@@ -73,7 +73,7 @@ And entering passphrase provided in the Notes: `grader1453`
 
 Notice: - You might have to run `chmod 400 graderAccess` in order to make it secure, since Amazon Lighsail might raise the following error message:  WARNING: UNPROTECTED PRIVATE KEY FILE!
 
-# Disallow Remote Access via root
+## Disallow Remote Access via root
 
 Change SSHD Config file to disable remote access with root and enable port 2200:
 
@@ -88,7 +88,7 @@ Port 2200
 `
 - - `sudo service sshd restart`
 
-# Ubuntu Firewall
+## Ubuntu Firewall
 
 - Make sure UFW is installed. (It is by default on Lightsail)
 
@@ -125,7 +125,7 @@ To                         Action      From
 5000 (v6)                  ALLOW       Anywhere (v6)
 
 
-# Managing the Environment
+## Managing the Environment
 1) Install pip:
  `sudo apt-get install python3-pip`
 
@@ -137,7 +137,7 @@ To                         Action      From
 
 5) To install dependencies, run `pip3 install -r requirements.txt`
 
-# WSGI and Apache
+## WSGI and Apache setup
 
 - Install apache:
 `sudo apt-get install apache2`
@@ -148,9 +148,22 @@ To                         Action      From
 - To enable mod_wsgi:
 `sudo a2enmod wsgi`
 
-For now, add the following line at the end of the `<VirtualHost *:80>` block, right before the closing `</VirtualHost> line: WSGIScriptAlias / /var/www/html/myapp.wsgi`
+- Create a `music_inventory.conf file to apache by running:
+`sudo nano /etc/apache2/sites-available/music_inventory.conf`
+(See the conf file on this repo (`music_inventory.conf`)
 
-# PostgreSQL setup
+- Then activate this conf file by running:
+`sudo a2ensite music_inventory.conf`
+
+- Make sure the other conf files are disabled by running `sudo a2dissite <NAME>`
+
+## Cloning the webapp project repo on Git
+
+Install git:
+
+- `sudo apt-get install git`
+
+## PostgreSQL setup
 
 - `sudo apt-get install postgresql postgresql-contrib`
 
@@ -198,10 +211,3 @@ Create role `catalog`in database:
 
 (https://www.postgresql.org/docs/9.1/sql-grant.html)
 (https://tableplus.io/blog/2018/04/postgresql-how-to-create-read-only-user.html)
-
-
-# Cloning the webapp project repo on Git
-
-Install git:
-
-- `sudo apt-get install git`
