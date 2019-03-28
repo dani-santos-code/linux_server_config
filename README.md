@@ -199,6 +199,9 @@ From here, we can connect to the system by typing:
 
 `psql`
 
+Create database `catalog`:
+`CREATE DATABASE catalog;`
+
 The current default when installing PostgreSQL from the Ubuntu repositories is to not allow remote connections to the database, removing a potential attack vector.
 
 (More on the topics can be found at https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
