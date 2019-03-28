@@ -44,11 +44,14 @@ Add the following lines to the file:
 127.0.0.1 localhost
 35.156.207.226 www.danisantoscode.com
 ```
+(I created a domain name on Google. More info below)
 
 ## Disable ssh with root
+
 By default, Lighsail won't allow remote access via root
 
 ## Create user grader
+
 `sudo adduser grader`
 
 ## Add Grader to sudo group
@@ -56,6 +59,7 @@ By default, Lighsail won't allow remote access via root
 `sudo adduser grader sudo`
 
 ## Generate SSH keys for Grader and add to server
+
 - This prevents brute force attacks
 
 - Generate ssh-keys for grader with passphrase
@@ -232,3 +236,14 @@ Finally, to set up the schema and prepopulate the database, run the following:
 `python3 /var/www/music_inventory/catalog/database_setup.py`
 
 `python3 /var/www/music_inventory/catalog/loadinstruments.py`
+
+
+# DNS (Google Domains)
+
+This DNS was created for another purpose, but I'm using it in this project. It's a Google domain.
+
+I added the public IP of this AWS instance to the list of resource records.
+
+
+# OAuth Consent
+I added my domain to the list of  Google's OAuth authorized domains. 
