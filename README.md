@@ -76,7 +76,7 @@ By default, Lighsail won't allow remote access via root
 - Added public key (`graderAccess.pub`) to authorized keys file on the Server
 
 - You can now log in as `grader` by running:
-` ssh grader@18.184.67.11 -p 2200 -i ~/.ssh/graderAccess`
+` ssh grader@35.156.207.226 -p 2200 -i ~/.ssh/graderAccess`
 (The key and the passphrase are in the provided "Notes to Reviewer")
 
 Notice: - You might have to run `chmod 400 graderAccess` in order to make it secure, since Amazon Lighsail might raise the following error message:  WARNING: UNPROTECTED PRIVATE KEY FILE!
@@ -231,6 +231,23 @@ GRANT DELETE ON instrument TO catalog;
 
 (https://www.postgresql.org/docs/9.1/sql-grant.html)
 (https://tableplus.io/blog/2018/04/postgresql-how-to-create-read-only-user.html)
+
+## CHOWN and CHMOD
+
+It's important to give file permissions to write, read and execute the following files:
+
+Go to the /var/www directory and run
+`sudo chown :www-data music_inventory`
+`sudo chmod 775 music_inventory`
+
+Then, go to /var/www/music_inventory and run:
+`sudo chown :www-data catalog`
+`sudo chmod 775 catalog`
+
+Give permissions to the database file at `/etc/postgresql/10`:
+`sudo chown :www-data main`
+`sudo chmod 775 main`
+
 
 ## Setting up the schema
 
