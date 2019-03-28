@@ -2,7 +2,7 @@
 
 These are the steps taken to deploy the Music Inventory app which was done as part of the Udacity Full-Stack NanoDegree program.
 
-The website is running on a [Apache2](https://httpd.apache.org/) server with `mod wsgi`.
+The website is running on a [Apache2](https://httpd.apache.org/) server with `mod_wsgi`.
 
 The app can be found at www.danisantoscode.com
 
@@ -21,7 +21,7 @@ Under the Networking panel, added rules to the firewall:
 ```
 Application	Protocol	Port range
 SSH	          TCP	      22
-HTTP	        TCP	       80
+HTTP	        TCP	      80
 Custom	      TCP	     123
 Custom	      TCP	     2200
 ```
@@ -115,6 +115,8 @@ To enable the firewall:
 `sudo ufw enable`
 
 `sudo ufw status` will return:
+
+```
 Status: active
 
 To                         Action      From
@@ -125,7 +127,7 @@ To                         Action      From
 2200/tcp (v6)              ALLOW       Anywhere (v6)
 80/tcp (v6)                ALLOW       Anywhere (v6)
 123/tcp (v6)               ALLOW       Anywhere (v6)
-
+```
 
 ## WSGI and Apache setup
 
@@ -138,7 +140,7 @@ To                         Action      From
 - To enable mod_wsgi:
 `sudo a2enmod wsgi`
 
-- Create a `music_inventory.conf file to apache by running:
+- Create a `music_inventory.conf` file to Apache by running:
 `sudo nano /etc/apache2/sites-available/music_inventory.conf`
 (See the conf file on this repo (`music_inventory.conf`)
 
@@ -155,8 +157,20 @@ Install git:
 
 - `sudo apt-get install git`
 
+Cd into the following path:
 
-## Managing the Environment
+`sudo /var/www`
+
+- Clone the repo `music_inventory` repo under the `wwww` directory
+
+- Create a wsgi file in that repo with app to be run on Mod WSGI's Virtual Host:
+
+`sudo touch music_inventory.wsgi`
+
+*Note*: You can see this file in the current repo!
+
+## Setting up the Environment and installing dependencies for the project to run
+
 1) Install pip:
  `sudo apt-get install python3-pip`
 
@@ -164,7 +178,7 @@ Install git:
 
 3) Create env `sudo virtualenv venv`
 
-4) Activate the env by running sudo `source venv/bin/activate`
+4) Activate the env by running `sudo source venv/bin/activate`
 
 5) To install dependencies, run `pip3 install -r requirements.txt`
 
@@ -181,17 +195,9 @@ From here, we can connect to the system by typing:
 
 `psql`
 
-(https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
-One simple way to remove a potential attack vector is to not allow remote connections to the database. This is the current default when installing PostgreSQL from the Ubuntu repositories.
+The current default when installing PostgreSQL from the Ubuntu repositories is to not allow remote connections to the database, removing a potential attack vector.
 
-We can double check that no remote connections are allowed by looking in the host based authentication file:
-
-`sudo nano /etc/postgresql/10/main/pg_hba.conf`
-
-Log into PostgreSQL by running:
-
-`sudo su - postgres`
-`psql`
+(More on the topics can be found at https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
 # Creating Roles and Granting Permissions on the Database
 
@@ -217,3 +223,11 @@ Create role `catalog`in database:
 
 (https://www.postgresql.org/docs/9.1/sql-grant.html)
 (https://tableplus.io/blog/2018/04/postgresql-how-to-create-read-only-user.html)
+
+# Setting up the schema
+
+Finally, to set up the schema and prepopulate the database, run the following:
+
+`python3 /var/www/music_inventory/catalog/database_setup.py`
+
+`python3 /var/www/music_inventory/catalog/loadinstruments.py`
