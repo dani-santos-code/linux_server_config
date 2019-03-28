@@ -246,4 +246,5 @@ I added the public IP of this AWS instance to the list of resource records.
 
 
 # OAuth Consent
-I added my domain to the list of  Google's OAuth authorized domains. 
+
+I added my domain to the list of  Google's OAuth authorized domains.
