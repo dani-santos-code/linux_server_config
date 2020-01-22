@@ -42,7 +42,7 @@ Run the following, to make sure packages, especially security ones, are updated:
 Add the following lines to the file:
 ```
 127.0.0.1 localhost
-35.156.207.226 www.danisantoscode.com
+15.222.142.52 www.danisantoscode.com
 ```
 (I created a domain name on Google. More info below)
 
