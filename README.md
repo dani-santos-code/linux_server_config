@@ -12,9 +12,9 @@ The steps taken in order to achieve so were as follows:
 
 ## AWS Lightsail Instance
 
-Created a Ubuntu 18.04 LTS instance with the following Public IP:  `35.156.207.226`
+Created a Ubuntu 18.04 LTS instance with the following Public IP:  `35.183.93.70`
 
-Made the IP static to set up the domain name later ahead.
+Made the IP static to set up the domain name later ahead. (`15.222.142.52`)
 
 Under the Networking panel, added rules to the firewall:
 
