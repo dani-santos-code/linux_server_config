@@ -14,7 +14,7 @@ The steps taken in order to achieve so were as follows:
 
 Created a Ubuntu 18.04 LTS instance with the following Public IP:  `35.183.93.70`
 
-Made the IP static to set up the domain name later ahead. (`15.222.142.52`)
+Made the IP static to set up the domain name later ahead. (`15.222.159.43`)
 
 Under the Networking panel, added rules to the firewall:
 
@@ -42,7 +42,7 @@ Run the following, to make sure packages, especially security ones, are updated:
 Add the following lines to the file:
 ```
 127.0.0.1 localhost
-15.222.142.52 www.danisantoscode.com
+15.222.159.43 www.danisantoscode.com
 ```
 (I created a domain name on Google. More info below)
 
@@ -51,15 +51,15 @@ Add the following lines to the file:
 By default, Lighsail won't allow remote access via root
 
 ## Create user grader
-
+[DEPRECATED]
 `sudo adduser grader`
 
 ## Add Grader to sudo group
-
+[DEPRECATED]
 `sudo adduser grader sudo`
 
 ## Generate SSH keys for Grader and add to server
-
+[DEPRECATED]
 - This prevents brute force attacks
 
 - Generate ssh-keys for grader with passphrase
