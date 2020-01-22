@@ -92,7 +92,7 @@ Change SSHD Config file to disable remote access with root and enable port 2200:
 
 - `#Run SSH on a non standard port`
 Port 2200
-`
+
 -  `sudo service sshd restart`
 
 ## Ubuntu Firewall
